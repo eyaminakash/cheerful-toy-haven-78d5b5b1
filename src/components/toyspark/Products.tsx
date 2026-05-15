@@ -1,0 +1,43 @@
+import { motion } from "motion/react";
+import { ProductCard } from "./ProductCard";
+import { PRODUCTS } from "./products-data";
+
+export function Products() {
+  return (
+    <section id="products" className="relative py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <span className="inline-block rounded-full bg-brand-pink/60 px-4 py-1 text-xs font-bold uppercase tracking-wider text-brand-pink-deep">
+            Our Collection
+          </span>
+          <h2 className="mt-4 font-display text-4xl font-bold md:text-5xl">
+            Our Featured <span className="gradient-text">Toys</span>
+          </h2>
+          <p className="mt-3 text-foreground/70">
+            Hand-picked favorites loved by little dreamers everywhere.
+          </p>
+        </motion.div>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PRODUCTS.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <ProductCard product={p} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
