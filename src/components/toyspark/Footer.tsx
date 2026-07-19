@@ -73,7 +73,15 @@ export function Footer() {
       </div>
       <div className="border-t border-white/15">
         <p className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-white/70 md:px-8">
-          © {new Date().getFullYear()} ToySpark. Made with 💖 for happy kids.
+          © {new Date().getFullYear()} ToySpark. Made with 💖 for happy kids. Design and Developed by{" "}
+          <a
+            href="https://digitalwebars.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-yellow hover:underline"
+          >
+            Digital Webars
+          </a>
         </p>
       </div>
     </footer>
