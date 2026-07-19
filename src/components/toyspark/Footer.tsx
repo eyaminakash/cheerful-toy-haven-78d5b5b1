@@ -1,5 +1,6 @@
-import { Facebook, Instagram, Mail, Sparkles, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
+import logo from "@/assets/mafi-toys-logo.png.asset.json";
 
 const LINKS = [
   { id: "home", label: "Home" },
@@ -20,11 +21,8 @@ export function Footer() {
     <footer className="relative mt-10 gradient-footer text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4 md:px-8">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-white/15 backdrop-blur">
-              <Sparkles className="h-5 w-5" />
-            </span>
-            <span className="font-display text-2xl font-bold">ToySpark</span>
+          <div className="inline-flex items-center rounded-2xl bg-white/95 p-3 shadow-lg">
+            <img src={logo.url} alt="Mafi Toys" className="h-16 w-auto" />
           </div>
           <p className="mt-4 max-w-md text-sm text-white/80">
             Magical, colorful and beautifully made toys for happy little girls.
@@ -61,19 +59,27 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-lg font-semibold">Contact</h4>
+          <h4 className="font-display text-lg font-semibold">Contact Us</h4>
           <ul className="mt-3 space-y-2 text-sm text-white/80">
             <li className="flex items-center gap-2">
-              <Mail className="h-4 w-4" /> hello@toyspark.shop
+              <Phone className="h-4 w-4 shrink-0" /> 01781-984427
             </li>
-            <li>+1 (555) 010-2024</li>
-            <li>123 Sparkle Lane, Toy Town</li>
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+              <span>
+                Bashundhara City Shopping Mall. Level-1, Block-C, Shop-77,
+                Dhaka, Bangladesh, 1229
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Mail className="h-4 w-4 shrink-0" /> ismailsiam231@gmail.com
+            </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/15">
         <p className="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-white/70 md:px-8">
-          © {new Date().getFullYear()} ToySpark. Made with 💖 for happy kids. Design and Developed by{" "}
+          © {new Date().getFullYear()} ToySpark. Made for happy kids. Design and Developed by{" "}
           <a
             href="https://digitalwebars.com/"
             target="_blank"

@@ -1,8 +1,18 @@
 import { motion } from "motion/react";
 import { ProductCard } from "./ProductCard";
 import { PRODUCTS } from "./products-data";
+import { useSearch } from "@/context/search-context";
 
 export function Products() {
+  const { query } = useSearch();
+  const q = query.trim().toLowerCase();
+  const filtered = q
+    ? PRODUCTS.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q),
+      )
+    : PRODUCTS;
   return (
     <section id="products" className="relative py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -24,8 +34,13 @@ export function Products() {
           </p>
         </motion.div>
 
+        {filtered.length === 0 ? (
+          <p className="mt-12 text-center text-foreground/60">
+            No toys match "{query}". Try another search.
+          </p>
+        ) : (
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PRODUCTS.map((p, i) => (
+          {filtered.map((p, i) => (
             <motion.div
               key={p.id}
               initial={{ opacity: 0, y: 30 }}
@@ -37,6 +52,7 @@ export function Products() {
             </motion.div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );
