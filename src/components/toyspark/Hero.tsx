@@ -42,7 +42,7 @@ export function Hero() {
           </span>
           <h1 className="mt-5 font-display text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
             Magical Toys For{" "}
-            <span className="gradient-text">Happy Girls</span> ✨
+            <span className="gradient-text">Happy Girls</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-base text-foreground/70 md:mx-0 md:text-lg">
             Discover colorful, fun, and educational toys designed to bring joy
