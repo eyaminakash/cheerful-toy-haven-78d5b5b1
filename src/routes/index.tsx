@@ -4,6 +4,7 @@ import { CartProvider } from "@/context/cart-context";
 import { SearchProvider } from "@/context/search-context";
 import { Navbar } from "@/components/toyspark/Navbar";
 import { Hero } from "@/components/toyspark/Hero";
+import { Categories } from "@/components/toyspark/Categories";
 import { Products } from "@/components/toyspark/Products";
 import { Reviews } from "@/components/toyspark/Reviews";
 import { Contact } from "@/components/toyspark/Contact";
@@ -22,6 +23,7 @@ function Index() {
         <Navbar />
         <main>
           <Hero />
+          <Categories />
           <Products />
           <Reviews />
           <Contact />
