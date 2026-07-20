@@ -12,7 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
   const handleAdd = () => {
     addItem(product);
     toast.success(`${product.name} added to cart`, {
-      description: `$${product.price.toFixed(2)}`,
+      description: `৳${product.price.toFixed(2)}`,
     });
     navigate({ to: "/cart" });
   };

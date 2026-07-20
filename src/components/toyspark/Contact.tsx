@@ -32,7 +32,7 @@ export function Contact() {
     await new Promise((r) => setTimeout(r, 700));
     if (items.length > 0) {
       toast.success("Order placed! 🎉", {
-        description: `Thanks ${data.name}! Total $${subtotal.toFixed(2)} — confirmation sent to ${data.email}.`,
+        description: `Thanks ${data.name}! Total ৳${subtotal.toFixed(2)} — confirmation sent to ${data.email}.`,
       });
       clear();
     } else {
