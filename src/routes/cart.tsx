@@ -272,14 +272,55 @@ function Row({ label, value, accent }: { label: string; value: string; accent?: 
   );
 }
 
-function Perk({ icon: Icon, label }: { icon: typeof Truck; label: string }) {
+function Perk({
+  icon: Icon,
+  title,
+  sub,
+  tone,
+}: {
+  icon: typeof Truck;
+  title: string;
+  sub: string;
+  tone: "pink" | "orange" | "red";
+}) {
+  const tones = {
+    pink: {
+      grad: "from-brand-pink/60 to-white",
+      ring: "ring-brand-pink/50",
+      icon: "from-brand-pink-deep to-brand-red text-white",
+      glow: "bg-brand-pink/50",
+    },
+    orange: {
+      grad: "from-brand-peach/70 to-white",
+      ring: "ring-brand-orange/40",
+      icon: "from-brand-orange to-brand-red text-white",
+      glow: "bg-brand-orange/40",
+    },
+    red: {
+      grad: "from-brand-yellow/60 to-white",
+      ring: "ring-brand-red/30",
+      icon: "from-brand-red to-brand-pink-deep text-white",
+      glow: "bg-brand-red/30",
+    },
+  }[tone];
+
   return (
-    <div className="flex items-center gap-3 rounded-2xl bg-white/70 p-3 text-sm ring-1 ring-brand-pink/40">
-      <div className="grid h-9 w-9 flex-none place-items-center rounded-full bg-brand-pink/40 text-brand-pink-deep">
-        <Icon className="h-4 w-4" />
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tones.grad} p-4 ring-1 ${tones.ring} shadow-sm hover:shadow-toy`}
+    >
+      <div className={`pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full ${tones.glow} blur-2xl transition-opacity group-hover:opacity-80`} />
+      <div className="relative flex items-center gap-3">
+        <div className={`grid h-11 w-11 flex-none place-items-center rounded-2xl bg-gradient-to-br ${tones.icon} shadow-md`}>
+          <Icon className="h-5 w-5" />
+        </div>
+        <div className="min-w-0">
+          <div className="font-display text-sm font-bold text-foreground">{title}</div>
+          <div className="text-xs text-foreground/60">{sub}</div>
+        </div>
       </div>
-      <span className="text-foreground/75">{label}</span>
-    </div>
+    </motion.div>
   );
 }
 
