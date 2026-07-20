@@ -7,10 +7,10 @@ import {
   Twitter,
   Youtube,
   Send,
-  ShieldCheck,
+  BadgeCheck,
   Truck,
-  Gift,
-  Heart,
+  Headphones,
+  BadgePercent,
   ArrowRight,
 } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
@@ -31,10 +31,26 @@ const SOCIAL = [
 ];
 
 const PERKS = [
-  { Icon: Truck, title: "Free Delivery", desc: "On orders above ৳2000" },
-  { Icon: ShieldCheck, title: "100% Authentic", desc: "Certified quality toys" },
-  { Icon: Gift, title: "Free Gift Wrap", desc: "For every order" },
-  { Icon: Heart, title: "Made With Love", desc: "Handpicked for kids" },
+  {
+    Icon: Truck,
+    title: "Shipping all over Bangladesh",
+    desc: "Order from anywhere in Bangladesh and get your product delivered by Mafi Toys",
+  },
+  {
+    Icon: Headphones,
+    title: "Online call support",
+    desc: "WhatsApp support available through text message only from 10:00 AM to 12:00 AM",
+  },
+  {
+    Icon: BadgePercent,
+    title: "Special discount",
+    desc: "We often offer special discount for our premium members",
+  },
+  {
+    Icon: BadgeCheck,
+    title: "Satisfaction guaranteed",
+    desc: "Your satisfaction is our unwavering promise — guaranteed",
+  },
 ];
 
 export function Footer() {
@@ -45,18 +61,14 @@ export function Footer() {
       <div className="pointer-events-none absolute -bottom-32 -right-20 h-72 w-72 rounded-full bg-brand-purple/30 blur-3xl" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
-      {/* Perks strip */}
-      <div className="relative border-b border-white/10 bg-white/5 backdrop-blur-sm">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 md:grid-cols-4 md:px-8">
+      {/* Perks strip — white service highlights */}
+      <div className="relative border-b border-black/5 bg-white text-foreground">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-12 sm:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-8">
           {PERKS.map(({ Icon, title, desc }) => (
-            <div key={title} className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20 backdrop-blur">
-                <Icon className="h-5 w-5 text-brand-yellow" />
-              </div>
-              <div>
-                <p className="text-sm font-bold">{title}</p>
-                <p className="text-xs text-white/70">{desc}</p>
-              </div>
+            <div key={title} className="flex flex-col gap-3">
+              <Icon className="h-10 w-10 stroke-[1.5] text-foreground" />
+              <h4 className="font-semibold text-foreground">{title}</h4>
+              <p className="text-sm leading-relaxed text-foreground/60">{desc}</p>
             </div>
           ))}
         </div>
