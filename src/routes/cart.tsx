@@ -209,10 +209,10 @@ function CartPage() {
                     </div>
 
                     <Button
-                      asChild
+                      onClick={() => document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth" })}
                       className="mt-2 w-full rounded-full bg-gradient-to-r from-brand-pink-deep to-brand-orange py-6 text-base font-semibold text-white shadow-toy hover:opacity-95"
                     >
-                      <Link to="/" hash="contact">Proceed to Checkout</Link>
+                      Proceed to Checkout
                     </Button>
                     <Button
                       asChild
