@@ -1,10 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, Minus, Plus, ShoppingBag, Sparkles, Trash2, Truck, ShieldCheck, Gift } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  ArrowLeft, Minus, Plus, ShoppingBag, Sparkles, Trash2, Truck, ShieldCheck, Gift,
+  Banknote, CheckCircle2, Download, Home, Package,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/context/cart-context";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useCart, type CartItem } from "@/context/cart-context";
 import { Navbar } from "@/components/toyspark/Navbar";
 import { Footer } from "@/components/toyspark/Footer";
+import logo from "@/assets/mafi-toys-logo.png.asset.json";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -22,6 +34,19 @@ function CartPage() {
   const { items, subtotal, updateQty, removeItem, clear } = useCart();
   const shipping = subtotal > 0 && subtotal < 100 ? 8 : 0;
   const total = subtotal + shipping;
+  const [order, setOrder] = useState<PlacedOrder | null>(null);
+
+  if (order) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-brand-pink/30 via-background to-background font-body text-foreground">
+        <Navbar />
+        <main className="pt-28 pb-20 md:pt-36">
+          <ThankYou order={order} />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-pink/30 via-background to-background font-body text-foreground">
@@ -200,6 +225,20 @@ function CartPage() {
                 </div>
               </motion.aside>
             </div>
+          )}
+
+          {items.length > 0 && (
+            <CheckoutForm
+              items={items}
+              subtotal={subtotal}
+              shipping={shipping}
+              total={total}
+              onPlaced={(o) => {
+                setOrder(o);
+                clear();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            />
           )}
         </div>
       </main>
