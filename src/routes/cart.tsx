@@ -162,10 +162,10 @@ function CartPage() {
                           </div>
                           <div className="text-right">
                             <div className="text-[11px] uppercase tracking-wider text-foreground/40">
-                              ${item.price.toFixed(2)} each
+                              ৳{item.price.toFixed(2)} each
                             </div>
                             <div className="font-display text-2xl font-bold tracking-tight text-brand-pink-deep">
-                              ${(item.price * item.quantity).toFixed(2)}
+                              ৳{(item.price * item.quantity).toFixed(2)}
                             </div>
                           </div>
                         </div>
@@ -179,7 +179,7 @@ function CartPage() {
                   <Perk
                     icon={Truck}
                     title="Free Delivery"
-                    sub="Inside Dhaka over $100"
+                    sub="Inside Dhaka over ৳100"
                     tone="pink"
                   />
                   <Perk
@@ -219,15 +219,15 @@ function CartPage() {
                   </div>
 
                   <div className="relative space-y-3 p-6">
-                    <Row label="Subtotal" value={`$${subtotal.toFixed(2)}`} />
+                    <Row label="Subtotal" value={`৳${subtotal.toFixed(2)}`} />
                     <Row
                       label="Shipping"
-                      value={shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
+                      value={shipping === 0 ? "FREE" : `৳${shipping.toFixed(2)}`}
                       accent={shipping === 0}
                     />
                     {shipping > 0 && (
                       <div className="rounded-2xl bg-brand-yellow/30 px-3 py-2 text-xs text-foreground/70">
-                        Add ${(100 - subtotal).toFixed(2)} more for free shipping ✨
+                        Add ৳{(100 - subtotal).toFixed(2)} more for free shipping ✨
                       </div>
                     )}
                     <div className="my-3 border-t border-dashed border-brand-pink/50" />
@@ -236,7 +236,7 @@ function CartPage() {
                         Total
                       </span>
                       <span className="font-display text-4xl font-bold tracking-tight text-brand-pink-deep">
-                        ${total.toFixed(2)}
+                        ৳{total.toFixed(2)}
                       </span>
                     </div>
 
@@ -468,16 +468,16 @@ function CheckoutForm({
             <ul className="mt-4 space-y-2 text-xs text-white/85">
               <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Pay when you receive</li>
               <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Inspect before paying</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Free delivery over $100</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Free delivery over ৳100</li>
             </ul>
           </div>
 
           <div className="mt-8 rounded-2xl bg-white/10 p-4 text-sm ring-1 ring-white/20">
-            <div className="flex justify-between"><span className="text-white/80">Subtotal</span><span className="font-semibold">${subtotal.toFixed(2)}</span></div>
-            <div className="mt-1 flex justify-between"><span className="text-white/80">Shipping</span><span className="font-semibold">{shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}</span></div>
+            <div className="flex justify-between"><span className="text-white/80">Subtotal</span><span className="font-semibold">৳{subtotal.toFixed(2)}</span></div>
+            <div className="mt-1 flex justify-between"><span className="text-white/80">Shipping</span><span className="font-semibold">{shipping === 0 ? "FREE" : `৳${shipping.toFixed(2)}`}</span></div>
             <div className="mt-3 flex items-baseline justify-between border-t border-white/20 pt-3">
               <span className="font-bold">Total</span>
-              <span className="font-display text-2xl font-bold">${total.toFixed(2)}</span>
+              <span className="font-display text-2xl font-bold">৳{total.toFixed(2)}</span>
             </div>
           </div>
         </aside>
@@ -520,7 +520,7 @@ function CheckoutForm({
             disabled={isSubmitting}
             className="mt-6 h-14 w-full rounded-full bg-gradient-to-r from-brand-pink-deep via-brand-orange to-brand-red text-base font-bold text-white shadow-toy hover:brightness-105"
           >
-            {isSubmitting ? "Placing order…" : `Place Order · $${total.toFixed(2)}`}
+            {isSubmitting ? "Placing order…" : `Place Order · ৳${total.toFixed(2)}`}
           </Button>
           <p className="mt-3 text-center text-xs text-foreground/60">
             By placing this order you agree to our friendly terms. 💕
@@ -587,8 +587,8 @@ async function downloadInvoicePDF(order: PlacedOrder) {
       String(i + 1),
       it.name,
       String(it.quantity),
-      `$${it.price.toFixed(2)}`,
-      `$${(it.price * it.quantity).toFixed(2)}`,
+      `৳${it.price.toFixed(2)}`,
+      `৳${(it.price * it.quantity).toFixed(2)}`,
     ]),
     headStyles: { fillColor: [236, 72, 153], textColor: 255, fontStyle: "bold" },
     styles: { fontSize: 10, cellPadding: 3 },
@@ -599,15 +599,15 @@ async function downloadInvoicePDF(order: PlacedOrder) {
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
   doc.text("Subtotal:", 140, finalY);
-  doc.text(`$${order.subtotal.toFixed(2)}`, 195, finalY, { align: "right" });
+  doc.text(`৳${order.subtotal.toFixed(2)}`, 195, finalY, { align: "right" });
   doc.text("Shipping:", 140, finalY + 6);
-  doc.text(order.shipping === 0 ? "FREE" : `$${order.shipping.toFixed(2)}`, 195, finalY + 6, { align: "right" });
+  doc.text(order.shipping === 0 ? "FREE" : `৳${order.shipping.toFixed(2)}`, 195, finalY + 6, { align: "right" });
   doc.setDrawColor(236, 72, 153);
   doc.line(140, finalY + 10, 195, finalY + 10);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
   doc.text("TOTAL:", 140, finalY + 17);
-  doc.text(`$${order.total.toFixed(2)}`, 195, finalY + 17, { align: "right" });
+  doc.text(`৳${order.total.toFixed(2)}`, 195, finalY + 17, { align: "right" });
 
   // Footer
   doc.setFont("helvetica", "italic");
@@ -707,8 +707,8 @@ function ThankYou({ order }: { order: PlacedOrder }) {
                       </div>
                     </td>
                     <td className="px-4 py-3 text-center">{it.quantity}</td>
-                    <td className="px-4 py-3 text-right">${it.price.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-right font-semibold">${(it.price * it.quantity).toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right">৳{it.price.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right font-semibold">৳{(it.price * it.quantity).toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -717,12 +717,12 @@ function ThankYou({ order }: { order: PlacedOrder }) {
 
           {/* Totals */}
           <div className="mt-6 ml-auto w-full max-w-sm space-y-2 text-sm">
-            <div className="flex justify-between"><span className="text-foreground/70">Subtotal</span><span className="font-semibold">${order.subtotal.toFixed(2)}</span></div>
-            <div className="flex justify-between"><span className="text-foreground/70">Shipping</span><span className="font-semibold">{order.shipping === 0 ? "FREE" : `$${order.shipping.toFixed(2)}`}</span></div>
+            <div className="flex justify-between"><span className="text-foreground/70">Subtotal</span><span className="font-semibold">৳{order.subtotal.toFixed(2)}</span></div>
+            <div className="flex justify-between"><span className="text-foreground/70">Shipping</span><span className="font-semibold">{order.shipping === 0 ? "FREE" : `৳${order.shipping.toFixed(2)}`}</span></div>
             <div className="my-2 border-t border-dashed border-brand-pink/60" />
             <div className="flex items-baseline justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-display text-3xl font-bold text-brand-pink-deep">${order.total.toFixed(2)}</span>
+              <span className="font-display text-3xl font-bold text-brand-pink-deep">৳{order.total.toFixed(2)}</span>
             </div>
           </div>
 

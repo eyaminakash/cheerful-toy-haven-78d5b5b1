@@ -32,7 +32,7 @@ export function Contact() {
     await new Promise((r) => setTimeout(r, 700));
     if (items.length > 0) {
       toast.success("Order placed! 🎉", {
-        description: `Thanks ${data.name}! Total $${subtotal.toFixed(2)} — confirmation sent to ${data.email}.`,
+        description: `Thanks ${data.name}! Total ৳${subtotal.toFixed(2)} — confirmation sent to ${data.email}.`,
       });
       clear();
     } else {
@@ -173,7 +173,7 @@ export function Contact() {
                         {items.reduce((s, i) => s + i.quantity, 0)} item(s) in cart
                       </p>
                     </div>
-                    <div className="text-lg font-bold text-brand-pink-deep">${subtotal.toFixed(2)}</div>
+                    <div className="text-lg font-bold text-brand-pink-deep">৳{subtotal.toFixed(2)}</div>
                   </div>
                 )}
 

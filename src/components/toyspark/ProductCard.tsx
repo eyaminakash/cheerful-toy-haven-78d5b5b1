@@ -12,7 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
   const handleAdd = () => {
     addItem(product);
     toast.success(`${product.name} added to cart`, {
-      description: `$${product.price.toFixed(2)}`,
+      description: `৳${product.price.toFixed(2)}`,
     });
     navigate({ to: "/cart" });
   };
@@ -50,7 +50,7 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-sm text-foreground/70">{product.description}</p>
         <div className="mt-auto flex items-center justify-between pt-2">
           <span className="font-display text-2xl font-bold text-brand-pink-deep">
-            ${product.price.toFixed(2)}
+            ৳{product.price.toFixed(2)}
           </span>
         </div>
         <Button
