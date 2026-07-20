@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Heart, Menu, Phone, Search, ShoppingBag, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -109,9 +110,9 @@ export function Navbar() {
           >
             <Heart className="h-5 w-5" />
           </button>
-          <button
-            onClick={openCart}
-            aria-label={`Open cart, ${count} items`}
+          <Link
+            to="/cart"
+            aria-label={`View cart, ${count} items`}
             className="relative grid h-11 w-11 place-items-center rounded-full text-foreground transition hover:bg-brand-pink/40 hover:text-brand-pink-deep"
           >
             <ShoppingBag className="h-5 w-5" />
@@ -120,7 +121,7 @@ export function Navbar() {
                 {count}
               </span>
             )}
-          </button>
+          </Link>
           <Button
             onClick={() => go("contact")}
             className="hidden rounded-full bg-gradient-to-r from-brand-pink-deep to-brand-orange px-5 text-white shadow-toy hover:opacity-95 md:inline-flex"

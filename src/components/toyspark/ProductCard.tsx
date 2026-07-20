@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useNavigate } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -6,14 +7,15 @@ import { useCart, type Product } from "@/context/cart-context";
 import { scrollToSection } from "@/lib/scroll";
 
 export function ProductCard({ product }: { product: Product }) {
-  const { addItem, openCart } = useCart();
+  const { addItem } = useCart();
+  const navigate = useNavigate();
 
   const handleAdd = () => {
     addItem(product);
     toast.success(`${product.name} added to cart`, {
       description: `$${product.price.toFixed(2)}`,
     });
-    openCart();
+    navigate({ to: "/cart" });
   };
 
   const handleBuyNow = () => {
@@ -29,7 +31,7 @@ export function ProductCard({ product }: { product: Product }) {
       className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-md transition-shadow hover:shadow-toy"
     >
       <button
-        onClick={openCart}
+        onClick={() => navigate({ to: "/cart" })}
         className="relative aspect-square overflow-hidden bg-brand-pink/30"
         aria-label={`View ${product.name}`}
       >
