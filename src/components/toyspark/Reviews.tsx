@@ -1,95 +1,94 @@
 import { motion } from "motion/react";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, BadgeCheck } from "lucide-react";
 
 const REVIEWS = [
   {
     name: "Sophia M.",
     role: "Mom of Lily, 5",
-    color: "from-brand-pink to-brand-pink-deep",
-    accent: "bg-brand-pink/15",
+    location: "Dhaka",
     text: "My daughter absolutely adores her unicorn plush! The quality is amazing and shipping was super fast. ToySpark is now our go-to.",
   },
   {
     name: "Aisha K.",
     role: "Mom of Zara, 7",
-    color: "from-brand-peach to-brand-orange",
-    accent: "bg-brand-peach/25",
+    location: "Chattogram",
     text: "The princess doll became Zara's best friend overnight. Beautiful craftsmanship and such cheerful colors — exactly as pictured!",
   },
   {
     name: "Emma R.",
     role: "Mom of twins, 4",
-    color: "from-brand-purple to-brand-sky",
-    accent: "bg-brand-purple/20",
+    location: "Sylhet",
     text: "We ordered the kitchen set for the twins and they haven't stopped 'cooking' since. So happy with this magical little brand.",
   },
 ];
 
 export function Reviews() {
   return (
-    <section id="reviews" className="relative overflow-hidden py-20 md:py-28">
-      <div className="absolute inset-0 -z-10 gradient-hero opacity-30" />
-      <div className="absolute -top-24 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-pink/30 blur-3xl" />
-      <div className="absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-brand-purple/20 blur-3xl" />
+    <section id="reviews" className="relative bg-white py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl text-center"
+          className="flex flex-col items-start justify-between gap-8 border-b border-foreground/10 pb-10 md:flex-row md:items-end"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-pink/30 bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-brand-pink-deep shadow-sm backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-pink-deep" />
-            Loved By Families
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-pink-deep" />
-          </span>
-          <h2 className="mt-5 font-display text-4xl font-bold leading-tight md:text-6xl">
-            What Parents <span className="gradient-text">Say</span> ❤️
-          </h2>
-          <p className="mt-4 text-base text-foreground/60 md:text-lg">
-            Real stories from families who chose magic, quality and joy.
-          </p>
-          <div className="mt-6 flex items-center justify-center gap-6 text-sm">
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-brand-orange text-brand-orange" />
-              ))}
+          <div className="max-w-xl">
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-foreground/50">
+              Testimonials
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-5xl">
+              Trusted by thousands of parents
+              <span className="text-foreground/40"> across Bangladesh.</span>
+            </h2>
+          </div>
+          <div className="flex items-center gap-6">
+            <div>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-brand-orange text-brand-orange" />
+                ))}
+              </div>
+              <p className="mt-1 text-sm text-foreground/60">
+                <span className="font-semibold text-foreground">4.9 out of 5</span> · 2,400+ verified reviews
+              </p>
             </div>
-            <span className="font-semibold text-foreground/80">4.9 / 5 · 2,400+ reviews</span>
           </div>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-foreground/10 bg-foreground/10 md:grid-cols-3">
           {REVIEWS.map((r, i) => (
             <motion.article
               key={r.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className={`group relative overflow-hidden rounded-3xl bg-white p-8 shadow-md ring-1 ring-black/5 transition-all hover:shadow-toy ${i === 1 ? "md:-translate-y-4" : ""}`}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="group relative flex flex-col justify-between bg-white p-8 transition-colors hover:bg-muted/40 md:p-10"
             >
-              <div className={`pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full ${r.accent} blur-2xl transition-transform duration-500 group-hover:scale-125`} />
-              <Quote className="absolute right-6 top-6 h-10 w-10 rotate-180 text-brand-pink/40" />
-              <div className="mb-5 flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, idx) => (
-                  <Star key={idx} className="h-5 w-5 fill-brand-orange text-brand-orange" />
-                ))}
+              <div>
+                <Quote className="h-6 w-6 text-brand-pink-deep" />
+                <div className="mt-4 flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, idx) => (
+                    <Star key={idx} className="h-4 w-4 fill-brand-orange text-brand-orange" />
+                  ))}
+                </div>
+                <p className="mt-5 text-[15px] leading-relaxed text-foreground/80">
+                  “{r.text}”
+                </p>
               </div>
-              <p className="relative text-base leading-relaxed text-foreground/85">
-                &ldquo;{r.text}&rdquo;
-              </p>
-              <div className="mt-7 flex items-center gap-3 border-t border-dashed border-foreground/10 pt-5">
-                <div
-                  className={`grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br ${r.color} font-display text-xl font-bold text-white shadow-lg`}
-                >
+              <div className="mt-8 flex items-center gap-3 border-t border-foreground/10 pt-5">
+                <div className="grid h-11 w-11 place-items-center rounded-full bg-foreground text-sm font-semibold text-white">
                   {r.name.charAt(0)}
                 </div>
-                <div>
-                  <h4 className="font-display text-lg font-bold">{r.name}</h4>
-                  <p className="text-xs text-foreground/60">{r.role} · Verified Buyer</p>
+                <div className="flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <h4 className="text-sm font-semibold text-foreground">{r.name}</h4>
+                    <BadgeCheck className="h-4 w-4 text-brand-sky" />
+                  </div>
+                  <p className="text-xs text-foreground/55">
+                    {r.role} · {r.location}
+                  </p>
                 </div>
               </div>
             </motion.article>
