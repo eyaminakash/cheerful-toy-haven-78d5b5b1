@@ -82,7 +82,7 @@ function CartPage() {
                 <p className="mt-3 max-w-lg text-foreground/60">
                   {items.length === 0
                     ? "Nothing here yet — let’s find some magic."
-                    : `Review your ৳{items.length} item৳{items.length > 1 ? "s" : ""} and check out with cash on delivery.`}
+                    : `Review your ${items.length} item${items.length > 1 ? "s" : ""} and check out with cash on delivery.`}
                 </p>
               </div>
               {items.length > 0 && (
@@ -133,7 +133,7 @@ function CartPage() {
                           </div>
                           <button
                             onClick={() => removeItem(item.id)}
-                            aria-label={`Remove ৳{item.name}`}
+                            aria-label={`Remove ${item.name}`}
                             className="grid h-9 w-9 flex-none place-items-center rounded-full text-foreground/40 transition hover:bg-brand-red/10 hover:text-brand-red"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -219,10 +219,10 @@ function CartPage() {
                   </div>
 
                   <div className="relative space-y-3 p-6">
-                    <Row label="Subtotal" value={`৳৳{subtotal.toFixed(2)}`} />
+                    <Row label="Subtotal" value={`৳${subtotal.toFixed(2)}`} />
                     <Row
                       label="Shipping"
-                      value={shipping === 0 ? "FREE" : `৳৳{shipping.toFixed(2)}`}
+                      value={shipping === 0 ? "FREE" : `৳${shipping.toFixed(2)}`}
                       accent={shipping === 0}
                     />
                     {shipping > 0 && (
@@ -329,11 +329,11 @@ function Perk({
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ৳{tones.grad} p-4 ring-1 ৳{tones.ring} shadow-sm hover:shadow-toy`}
+      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${tones.grad} p-4 ring-1 ${tones.ring} shadow-sm hover:shadow-toy`}
     >
-      <div className={`pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full ৳{tones.glow} blur-2xl transition-opacity group-hover:opacity-80`} />
+      <div className={`pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full ${tones.glow} blur-2xl transition-opacity group-hover:opacity-80`} />
       <div className="relative flex items-center gap-3">
-        <div className={`grid h-11 w-11 flex-none place-items-center rounded-2xl bg-gradient-to-br ৳{tones.icon} shadow-md`}>
+        <div className={`grid h-11 w-11 flex-none place-items-center rounded-2xl bg-gradient-to-br ${tones.icon} shadow-md`}>
           <Icon className="h-5 w-5" />
         </div>
         <div className="min-w-0">
@@ -419,7 +419,7 @@ function CheckoutForm({
 
   const onSubmit = async (data: CheckoutValues) => {
     await new Promise((r) => setTimeout(r, 600));
-    const invoiceNo = `MAFI-৳{Date.now().toString().slice(-8)}`;
+    const invoiceNo = `MAFI-${Date.now().toString().slice(-8)}`;
     const order: PlacedOrder = {
       invoiceNo,
       date: new Date().toLocaleString(),
@@ -429,7 +429,7 @@ function CheckoutForm({
       shipping,
       total,
     };
-    toast.success("Order placed!", { description: `Invoice ৳{invoiceNo}` });
+    toast.success("Order placed!", { description: `Invoice ${invoiceNo}` });
     onPlaced(order);
   };
 
@@ -474,7 +474,7 @@ function CheckoutForm({
 
           <div className="mt-8 rounded-2xl bg-white/10 p-4 text-sm ring-1 ring-white/20">
             <div className="flex justify-between"><span className="text-white/80">Subtotal</span><span className="font-semibold">৳{subtotal.toFixed(2)}</span></div>
-            <div className="mt-1 flex justify-between"><span className="text-white/80">Shipping</span><span className="font-semibold">{shipping === 0 ? "FREE" : `৳৳{shipping.toFixed(2)}`}</span></div>
+            <div className="mt-1 flex justify-between"><span className="text-white/80">Shipping</span><span className="font-semibold">{shipping === 0 ? "FREE" : `৳${shipping.toFixed(2)}`}</span></div>
             <div className="mt-3 flex items-baseline justify-between border-t border-white/20 pt-3">
               <span className="font-bold">Total</span>
               <span className="font-display text-2xl font-bold">৳{total.toFixed(2)}</span>
@@ -520,7 +520,7 @@ function CheckoutForm({
             disabled={isSubmitting}
             className="mt-6 h-14 w-full rounded-full bg-gradient-to-r from-brand-pink-deep via-brand-orange to-brand-red text-base font-bold text-white shadow-toy hover:brightness-105"
           >
-            {isSubmitting ? "Placing order…" : `Place Order · ৳৳{total.toFixed(2)}`}
+            {isSubmitting ? "Placing order…" : `Place Order · ৳${total.toFixed(2)}`}
           </Button>
           <p className="mt-3 text-center text-xs text-foreground/60">
             By placing this order you agree to our friendly terms. 💕
@@ -567,8 +567,8 @@ async function downloadInvoicePDF(order: PlacedOrder) {
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
   doc.setTextColor(60, 60, 60);
-  doc.text(`Invoice #: ৳{order.invoiceNo}`, 14, 40);
-  doc.text(`Date: ৳{order.date}`, 14, 46);
+  doc.text(`Invoice #: ${order.invoiceNo}`, 14, 40);
+  doc.text(`Date: ${order.date}`, 14, 46);
   doc.text(`Payment: Cash on Delivery`, 14, 52);
 
   doc.setFont("helvetica", "bold");
@@ -587,8 +587,8 @@ async function downloadInvoicePDF(order: PlacedOrder) {
       String(i + 1),
       it.name,
       String(it.quantity),
-      `৳৳{it.price.toFixed(2)}`,
-      `৳৳{(it.price * it.quantity).toFixed(2)}`,
+      `৳${it.price.toFixed(2)}`,
+      `৳${(it.price * it.quantity).toFixed(2)}`,
     ]),
     headStyles: { fillColor: [236, 72, 153], textColor: 255, fontStyle: "bold" },
     styles: { fontSize: 10, cellPadding: 3 },
@@ -599,15 +599,15 @@ async function downloadInvoicePDF(order: PlacedOrder) {
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
   doc.text("Subtotal:", 140, finalY);
-  doc.text(`৳৳{order.subtotal.toFixed(2)}`, 195, finalY, { align: "right" });
+  doc.text(`৳${order.subtotal.toFixed(2)}`, 195, finalY, { align: "right" });
   doc.text("Shipping:", 140, finalY + 6);
-  doc.text(order.shipping === 0 ? "FREE" : `৳৳{order.shipping.toFixed(2)}`, 195, finalY + 6, { align: "right" });
+  doc.text(order.shipping === 0 ? "FREE" : `৳${order.shipping.toFixed(2)}`, 195, finalY + 6, { align: "right" });
   doc.setDrawColor(236, 72, 153);
   doc.line(140, finalY + 10, 195, finalY + 10);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
   doc.text("TOTAL:", 140, finalY + 17);
-  doc.text(`৳৳{order.total.toFixed(2)}`, 195, finalY + 17, { align: "right" });
+  doc.text(`৳${order.total.toFixed(2)}`, 195, finalY + 17, { align: "right" });
 
   // Footer
   doc.setFont("helvetica", "italic");
@@ -616,7 +616,7 @@ async function downloadInvoicePDF(order: PlacedOrder) {
   doc.text("Thank you for shopping with Mafi Toys!", 14, 280);
   doc.text("Bashundhara City, Level-1, Block-C, Shop-77, Dhaka · 01781-984427", 14, 286);
 
-  doc.save(`৳{order.invoiceNo}.pdf`);
+  doc.save(`${order.invoiceNo}.pdf`);
 }
 
 function ThankYou({ order }: { order: PlacedOrder }) {
@@ -640,7 +640,7 @@ function ThankYou({ order }: { order: PlacedOrder }) {
           >
             <CheckCircle2 className="h-10 w-10" />
           </motion.div>
-          <h1 className="mt-5 font-display text-4xl font-bold md:text-5xl">Thank You{order.name ? `, ৳{order.name.split(" ")[0]}` : ""}!</h1>
+          <h1 className="mt-5 font-display text-4xl font-bold md:text-5xl">Thank You{order.name ? `, ${order.name.split(" ")[0]}` : ""}!</h1>
           <p className="mt-3 text-white/90 md:text-lg">
             Your order has been placed successfully. We'll call you shortly to confirm.
           </p>
@@ -718,7 +718,7 @@ function ThankYou({ order }: { order: PlacedOrder }) {
           {/* Totals */}
           <div className="mt-6 ml-auto w-full max-w-sm space-y-2 text-sm">
             <div className="flex justify-between"><span className="text-foreground/70">Subtotal</span><span className="font-semibold">৳{order.subtotal.toFixed(2)}</span></div>
-            <div className="flex justify-between"><span className="text-foreground/70">Shipping</span><span className="font-semibold">{order.shipping === 0 ? "FREE" : `৳৳{order.shipping.toFixed(2)}`}</span></div>
+            <div className="flex justify-between"><span className="text-foreground/70">Shipping</span><span className="font-semibold">{order.shipping === 0 ? "FREE" : `৳${order.shipping.toFixed(2)}`}</span></div>
             <div className="my-2 border-t border-dashed border-brand-pink/60" />
             <div className="flex items-baseline justify-between">
               <span className="font-bold">Total</span>

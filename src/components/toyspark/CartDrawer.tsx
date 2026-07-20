@@ -26,7 +26,7 @@ export function CartDrawer() {
             <ShoppingBag className="h-5 w-5 text-brand-pink-deep" /> Your Cart
           </SheetTitle>
           <SheetDescription>
-            {items.length === 0 ? "Your cart is empty." : `৳{items.length} item(s) ready to ship.`}
+            {items.length === 0 ? "Your cart is empty." : `${items.length} item(s) ready to ship.`}
           </SheetDescription>
         </SheetHeader>
 
