@@ -166,10 +166,25 @@ function CartPage() {
                 </AnimatePresence>
 
                 {/* Perks */}
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  <Perk icon={Truck} label="Free delivery in Dhaka over $100" />
-                  <Perk icon={ShieldCheck} label="100% authentic toys" />
-                  <Perk icon={Gift} label="Free gift wrap available" />
+                <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                  <Perk
+                    icon={Truck}
+                    title="Free Delivery"
+                    sub="Inside Dhaka over $100"
+                    tone="pink"
+                  />
+                  <Perk
+                    icon={ShieldCheck}
+                    title="100% Authentic"
+                    sub="Genuine toys, guaranteed"
+                    tone="orange"
+                  />
+                  <Perk
+                    icon={Gift}
+                    title="Free Gift Wrap"
+                    sub="On every order"
+                    tone="red"
+                  />
                 </div>
               </ul>
 
