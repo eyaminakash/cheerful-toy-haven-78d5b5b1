@@ -49,7 +49,7 @@ function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-pink/30 via-background to-background font-body text-foreground">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,theme(colors.brand-pink/40),transparent_60%),radial-gradient(ellipse_at_bottom_right,theme(colors.brand-peach/40),transparent_50%)] bg-background font-body text-foreground">
       <Navbar />
 
       <main className="pt-28 pb-20 md:pt-36">
@@ -59,32 +59,41 @@ function CartPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="mb-8 flex flex-wrap items-end justify-between gap-4"
+            className="mb-10"
           >
-            <div>
-              <Link
-                to="/"
-                className="mb-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-pink-deep hover:underline"
-              >
-                <ArrowLeft className="h-4 w-4" /> Continue shopping
-              </Link>
-              <h1 className="font-display text-4xl font-bold md:text-5xl">
-                Your Shopping <span className="text-brand-pink-deep">Cart</span>
-              </h1>
-              <p className="mt-2 text-foreground/70">
-                {items.length === 0
-                  ? "Nothing here yet — let’s find some magic."
-                  : `${items.length} item${items.length > 1 ? "s" : ""} ready for checkout.`}
-              </p>
+            <Link
+              to="/"
+              className="group inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-brand-pink-deep shadow-sm ring-1 ring-brand-pink/40 backdrop-blur transition hover:bg-white hover:shadow-md"
+            >
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+              Continue shopping
+            </Link>
+            <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-brand-pink-deep/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand-pink-deep">
+                  <ShoppingBag className="h-3.5 w-3.5" /> Cart
+                </div>
+                <h1 className="mt-3 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+                  Your Shopping{" "}
+                  <span className="bg-gradient-to-r from-brand-pink-deep via-brand-red to-brand-orange bg-clip-text text-transparent">
+                    Cart
+                  </span>
+                </h1>
+                <p className="mt-3 max-w-lg text-foreground/60">
+                  {items.length === 0
+                    ? "Nothing here yet — let’s find some magic."
+                    : `Review your ${items.length} item${items.length > 1 ? "s" : ""} and check out with cash on delivery.`}
+                </p>
+              </div>
+              {items.length > 0 && (
+                <button
+                  onClick={clear}
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white/70 px-4 py-2 text-sm font-semibold text-foreground/60 shadow-sm backdrop-blur transition hover:border-brand-red/30 hover:text-brand-red"
+                >
+                  <Trash2 className="h-4 w-4" /> Clear cart
+                </button>
+              )}
             </div>
-            {items.length > 0 && (
-              <button
-                onClick={clear}
-                className="text-sm font-semibold text-foreground/60 hover:text-brand-red"
-              >
-                Clear cart
-              </button>
-            )}
           </motion.div>
 
           {items.length === 0 ? (
@@ -102,60 +111,60 @@ function CartPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, x: -40 }}
                       transition={{ duration: 0.3, delay: i * 0.04 }}
-                      className="flex flex-col gap-4 rounded-3xl bg-white p-4 shadow-md ring-1 ring-brand-pink/40 sm:flex-row sm:items-center md:p-5"
+                      className="group relative flex flex-col gap-4 rounded-3xl border border-white/60 bg-white/80 p-4 shadow-[0_10px_40px_-20px_rgba(236,72,153,0.25)] backdrop-blur-xl transition hover:shadow-[0_20px_50px_-20px_rgba(236,72,153,0.4)] sm:flex-row sm:items-center md:p-5"
                     >
-                      <div className="relative h-32 w-full flex-none overflow-hidden rounded-2xl bg-brand-pink/30 sm:h-28 sm:w-28">
+                      <div className="relative h-36 w-full flex-none overflow-hidden rounded-2xl bg-gradient-to-br from-brand-pink/40 to-brand-peach/40 sm:h-32 sm:w-32">
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
 
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <h3 className="font-display text-lg font-semibold leading-tight">
+                            <h3 className="font-display text-lg font-bold leading-tight md:text-xl">
                               {item.name}
                             </h3>
-                            <p className="mt-0.5 line-clamp-1 text-sm text-foreground/60">
+                            <p className="mt-1 line-clamp-1 text-sm text-foreground/55">
                               {item.description}
                             </p>
                           </div>
                           <button
                             onClick={() => removeItem(item.id)}
                             aria-label={`Remove ${item.name}`}
-                            className="grid h-9 w-9 place-items-center rounded-full text-foreground/50 transition hover:bg-brand-red/10 hover:text-brand-red"
+                            className="grid h-9 w-9 flex-none place-items-center rounded-full text-foreground/40 transition hover:bg-brand-red/10 hover:text-brand-red"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
                         </div>
 
-                        <div className="mt-1 flex items-center justify-between">
-                          <div className="flex items-center gap-1 rounded-full border-2 border-brand-pink/60 bg-white p-1">
+                        <div className="mt-2 flex items-center justify-between">
+                          <div className="flex items-center gap-1 rounded-full bg-brand-pink/20 p-1 ring-1 ring-brand-pink/50">
                             <button
                               onClick={() => updateQty(item.id, item.quantity - 1)}
-                              className="grid h-8 w-8 place-items-center rounded-full text-brand-pink-deep transition hover:bg-brand-pink/40"
+                              className="grid h-8 w-8 place-items-center rounded-full bg-white text-brand-pink-deep shadow-sm transition hover:scale-105 active:scale-95"
                               aria-label="Decrease"
                             >
                               <Minus className="h-3.5 w-3.5" />
                             </button>
-                            <span className="w-7 text-center text-sm font-bold">
+                            <span className="w-8 text-center text-sm font-bold tabular-nums">
                               {item.quantity}
                             </span>
                             <button
                               onClick={() => updateQty(item.id, item.quantity + 1)}
-                              className="grid h-8 w-8 place-items-center rounded-full text-brand-pink-deep transition hover:bg-brand-pink/40"
+                              className="grid h-8 w-8 place-items-center rounded-full bg-white text-brand-pink-deep shadow-sm transition hover:scale-105 active:scale-95"
                               aria-label="Increase"
                             >
                               <Plus className="h-3.5 w-3.5" />
                             </button>
                           </div>
                           <div className="text-right">
-                            <div className="text-xs text-foreground/50">
+                            <div className="text-[11px] uppercase tracking-wider text-foreground/40">
                               ${item.price.toFixed(2)} each
                             </div>
-                            <div className="font-display text-xl font-bold text-brand-pink-deep">
+                            <div className="font-display text-2xl font-bold tracking-tight text-brand-pink-deep">
                               ${(item.price * item.quantity).toFixed(2)}
                             </div>
                           </div>
@@ -195,47 +204,59 @@ function CartPage() {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 className="lg:sticky lg:top-32 lg:self-start"
               >
-                <div className="overflow-hidden rounded-3xl bg-white shadow-toy ring-1 ring-brand-pink/40">
-                  <div className="bg-gradient-to-r from-brand-pink-deep via-brand-orange to-brand-red p-5 text-white">
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="h-4 w-4" />
-                      <span className="text-xs font-semibold uppercase tracking-wider">
-                        Order Summary
-                      </span>
+                <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/85 shadow-[0_20px_60px_-20px_rgba(236,72,153,0.35)] backdrop-blur-xl">
+                  <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-brand-orange/30 blur-3xl" />
+                  <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-brand-pink/40 blur-3xl" />
+
+                  <div className="relative border-b border-brand-pink/20 p-6">
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-pink-deep/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-brand-pink-deep">
+                      <Sparkles className="h-3 w-3" /> Order Summary
                     </div>
-                    <p className="mt-1 font-display text-xl font-bold">
-                      {items.reduce((s, i) => s + i.quantity, 0)} magical items
+                    <p className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight">
+                      {items.reduce((s, i) => s + i.quantity, 0)}{" "}
+                      <span className="text-foreground/50">magical items</span>
                     </p>
                   </div>
 
-                  <div className="space-y-3 p-5">
+                  <div className="relative space-y-3 p-6">
                     <Row label="Subtotal" value={`$${subtotal.toFixed(2)}`} />
                     <Row
                       label="Shipping"
                       value={shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
                       accent={shipping === 0}
                     />
-                    <div className="my-2 border-t border-dashed border-brand-pink/60" />
+                    {shipping > 0 && (
+                      <div className="rounded-2xl bg-brand-yellow/30 px-3 py-2 text-xs text-foreground/70">
+                        Add ${(100 - subtotal).toFixed(2)} more for free shipping ✨
+                      </div>
+                    )}
+                    <div className="my-3 border-t border-dashed border-brand-pink/50" />
                     <div className="flex items-baseline justify-between">
-                      <span className="font-semibold">Total</span>
-                      <span className="font-display text-3xl font-bold text-brand-pink-deep">
+                      <span className="text-sm font-semibold uppercase tracking-wider text-foreground/60">
+                        Total
+                      </span>
+                      <span className="font-display text-4xl font-bold tracking-tight text-brand-pink-deep">
                         ${total.toFixed(2)}
                       </span>
                     </div>
 
                     <Button
                       onClick={() => document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth" })}
-                      className="mt-2 w-full rounded-full bg-gradient-to-r from-brand-pink-deep to-brand-orange py-6 text-base font-semibold text-white shadow-toy hover:opacity-95"
+                      className="mt-3 h-auto w-full rounded-2xl bg-gradient-to-r from-brand-pink-deep via-brand-red to-brand-orange py-4 text-base font-semibold text-white shadow-lg shadow-brand-pink-deep/30 transition hover:shadow-xl hover:shadow-brand-pink-deep/40 hover:brightness-105"
                     >
                       Proceed to Checkout
                     </Button>
                     <Button
                       asChild
-                      variant="outline"
-                      className="w-full rounded-full border-2 border-brand-pink-deep text-brand-pink-deep hover:bg-brand-pink/30"
+                      variant="ghost"
+                      className="w-full rounded-2xl text-brand-pink-deep hover:bg-brand-pink/20"
                     >
                       <Link to="/">Keep Shopping</Link>
                     </Button>
+
+                    <div className="mt-2 flex items-center justify-center gap-2 text-[11px] text-foreground/50">
+                      <ShieldCheck className="h-3.5 w-3.5" /> Secure • Cash on Delivery
+                    </div>
                   </div>
                 </div>
               </motion.aside>
