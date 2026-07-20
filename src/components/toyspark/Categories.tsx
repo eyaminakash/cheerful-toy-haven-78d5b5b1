@@ -15,6 +15,12 @@ import art from "@/assets/categories/art.jpg";
 import baby from "@/assets/categories/baby.jpg";
 import beach from "@/assets/categories/beach.jpg";
 import building from "@/assets/categories/building.jpg";
+import dolls from "@/assets/categories/dolls.jpg";
+import educational from "@/assets/categories/educational.jpg";
+import vehicles from "@/assets/categories/vehicles.jpg";
+import plush from "@/assets/categories/plush.jpg";
+import musical from "@/assets/categories/musical.jpg";
+import sports from "@/assets/categories/sports.jpg";
 
 const CATEGORIES = [
   { name: "Action Figures & Hero Toys", img: action, count: 11 },
@@ -23,11 +29,17 @@ const CATEGORIES = [
   { name: "Baby & Toddler Toys", img: baby, count: 17 },
   { name: "Beach & Water Toys", img: beach, count: 1 },
   { name: "Building & Construction Toys", img: building, count: 39 },
+  { name: "Dolls & Dollhouses", img: dolls, count: 22 },
+  { name: "Educational & STEM Toys", img: educational, count: 18 },
+  { name: "Vehicles & RC Toys", img: vehicles, count: 14 },
+  { name: "Plush & Soft Toys", img: plush, count: 27 },
+  { name: "Musical Instruments", img: musical, count: 9 },
+  { name: "Sports & Outdoor Toys", img: sports, count: 12 },
 ];
 
 export function Categories() {
   const autoplay = useRef(
-    Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true })
+    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
   return (
     <section className="bg-gradient-to-b from-background to-muted/40 py-14 md:py-20">
