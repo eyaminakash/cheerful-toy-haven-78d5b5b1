@@ -33,13 +33,13 @@ export function Hero() {
               <img
                 src={src}
                 alt={`Banner ${i + 1}`}
-                className="h-auto w-full object-cover"
+                className="h-[60vh] w-full object-cover md:h-[85vh]"
               />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-4 h-10 w-10 bg-white/80 text-foreground shadow-md hover:bg-white md:left-6" />
-        <CarouselNext className="right-4 h-10 w-10 bg-white/80 text-foreground shadow-md hover:bg-white md:right-6" />
+        <CarouselPrevious className="left-4 h-12 w-12 bg-white/80 text-foreground shadow-md hover:bg-white md:left-6 md:h-14 md:w-14" />
+        <CarouselNext className="right-4 h-12 w-12 bg-white/80 text-foreground shadow-md hover:bg-white md:right-6 md:h-14 md:w-14" />
       </Carousel>
     </section>
   );
