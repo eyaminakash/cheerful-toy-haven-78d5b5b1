@@ -4,7 +4,6 @@ import { Star } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useCart, type Product } from "@/context/cart-context";
-import { scrollToSection } from "@/lib/scroll";
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
@@ -16,12 +15,6 @@ export function ProductCard({ product }: { product: Product }) {
       description: `$${product.price.toFixed(2)}`,
     });
     navigate({ to: "/cart" });
-  };
-
-  const handleBuyNow = () => {
-    addItem(product);
-    toast.success("Added! Heading to checkout…");
-    scrollToSection("contact");
   };
 
   return (
@@ -60,21 +53,12 @@ export function ProductCard({ product }: { product: Product }) {
             ${product.price.toFixed(2)}
           </span>
         </div>
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <Button
-            onClick={handleAdd}
-            className="flex-1 rounded-full bg-foreground text-white hover:bg-foreground/90"
-          >
-            Add to Cart
-          </Button>
-          <Button
-            onClick={handleBuyNow}
-            variant="outline"
-            className="flex-1 rounded-full border-2 border-brand-pink-deep text-brand-pink-deep hover:bg-brand-pink/30"
-          >
-            Buy Now
-          </Button>
-        </div>
+        <Button
+          onClick={handleAdd}
+          className="w-full rounded-full bg-gradient-to-r from-brand-pink-deep to-brand-orange text-white shadow-md hover:opacity-95"
+        >
+          Add to Cart
+        </Button>
       </div>
     </motion.article>
   );
