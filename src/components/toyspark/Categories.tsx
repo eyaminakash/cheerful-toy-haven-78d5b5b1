@@ -1,5 +1,14 @@
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 import { motion } from "motion/react";
 import { scrollToSection } from "@/lib/scroll";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import action from "@/assets/categories/action.jpg";
 import animals from "@/assets/categories/animals.jpg";
 import art from "@/assets/categories/art.jpg";
@@ -17,47 +26,73 @@ const CATEGORIES = [
 ];
 
 export function Categories() {
+  const autoplay = useRef(
+    Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
   return (
-    <section className="bg-muted/30 py-12 md:py-16">
+    <section className="bg-gradient-to-b from-background to-muted/40 py-14 md:py-20">
       <div className="container mx-auto px-4">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-8 text-center font-heading text-3xl md:text-4xl"
+          className="mb-10 text-center"
         >
-          Shop by Category
-        </motion.h2>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-6">
-          {CATEGORIES.map((c, i) => (
-            <motion.button
-              key={c.name}
-              onClick={() => scrollToSection("products")}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -4 }}
-              className="group text-center"
-            >
-              <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition-shadow group-hover:shadow-lg">
-                <img
-                  src={c.img}
-                  alt={c.name}
-                  loading="lazy"
-                  width={512}
-                  height={512}
-                  className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="mt-3 text-sm font-semibold text-foreground md:text-base">
-                {c.name}
-              </h3>
-              <p className="text-xs text-muted-foreground">{c.count} Products</p>
-            </motion.button>
-          ))}
-        </div>
+          <span className="inline-block rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            Explore
+          </span>
+          <h2 className="mt-3 font-heading text-3xl md:text-4xl">
+            Shop by Category
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Discover toys your kids will love
+          </p>
+        </motion.div>
+
+        <Carousel
+          opts={{ loop: true, align: "start" }}
+          plugins={[autoplay.current]}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {CATEGORIES.map((c, i) => (
+              <CarouselItem
+                key={c.name}
+                className="basis-1/2 pl-4 sm:basis-1/3 md:basis-1/4 lg:basis-1/6"
+              >
+                <motion.button
+                  onClick={() => scrollToSection("products")}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  whileHover={{ y: -6 }}
+                  className="group w-full text-center"
+                >
+                  <div className="relative overflow-hidden rounded-3xl bg-white p-2 shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:shadow-xl group-hover:ring-primary/30">
+                    <img
+                      src={c.img}
+                      alt={c.name}
+                      loading="lazy"
+                      width={512}
+                      height={512}
+                      className="aspect-square w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold leading-tight text-foreground md:text-base">
+                    {c.name}
+                  </h3>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {c.count} Products
+                  </p>
+                </motion.button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex -left-4" />
+          <CarouselNext className="hidden md:flex -right-4" />
+        </Carousel>
       </div>
     </section>
   );
