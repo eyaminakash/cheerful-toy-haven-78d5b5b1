@@ -179,7 +179,7 @@ function CartPage() {
                   <Perk
                     icon={Truck}
                     title="Free Delivery"
-                    sub="Inside Dhaka over $100"
+                    sub="Inside Dhaka over ৳100"
                     tone="pink"
                   />
                   <Perk
@@ -468,7 +468,7 @@ function CheckoutForm({
             <ul className="mt-4 space-y-2 text-xs text-white/85">
               <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Pay when you receive</li>
               <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Inspect before paying</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Free delivery over $100</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5" /> Free delivery over ৳100</li>
             </ul>
           </div>
 
