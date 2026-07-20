@@ -102,8 +102,6 @@ export function Categories() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex -left-4" />
-          <CarouselNext className="hidden md:flex -right-4" />
         </Carousel>
       </div>
     </section>
