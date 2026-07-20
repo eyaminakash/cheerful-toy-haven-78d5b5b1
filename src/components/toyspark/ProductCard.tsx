@@ -13,6 +13,7 @@ export function ProductCard({ product }: { product: Product }) {
     toast.success(`${product.name} added to cart`, {
       description: `$${product.price.toFixed(2)}`,
     });
+    openCart();
   };
 
   const handleBuyNow = () => {
