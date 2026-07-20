@@ -12,7 +12,6 @@ import appCss from "../styles.css?url";
 import { CartProvider } from "@/context/cart-context";
 import { SearchProvider } from "@/context/search-context";
 import { Toaster } from "@/components/ui/sonner";
-import { CartDrawer } from "@/components/toyspark/CartDrawer";
 
 function NotFoundComponent() {
   return (
