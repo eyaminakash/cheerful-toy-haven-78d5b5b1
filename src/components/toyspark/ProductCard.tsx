@@ -11,8 +11,8 @@ export function ProductCard({ product }: { product: Product }) {
 
   const handleAdd = () => {
     addItem(product);
-    toast.success(`${product.name} added to cart`, {
-      description: `৳${product.price.toFixed(2)}`,
+    toast.success(`৳{product.name} added to cart`, {
+      description: `৳৳{product.price.toFixed(2)}`,
     });
     navigate({ to: "/cart" });
   };
@@ -26,7 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
       <button
         onClick={() => navigate({ to: "/cart" })}
         className="relative aspect-square overflow-hidden bg-brand-pink/30"
-        aria-label={`View ${product.name}`}
+        aria-label={`View ৳{product.name}`}
       >
         <img
           src={product.image}
@@ -42,7 +42,7 @@ export function ProductCard({ product }: { product: Product }) {
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
-              className={`h-4 w-4 ${i < product.rating ? "fill-brand-orange text-brand-orange" : "text-muted"}`}
+              className={`h-4 w-4 ৳{i < product.rating ? "fill-brand-orange text-brand-orange" : "text-muted"}`}
             />
           ))}
         </div>
@@ -50,7 +50,7 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-sm text-foreground/70">{product.description}</p>
         <div className="mt-auto flex items-center justify-between pt-2">
           <span className="font-display text-2xl font-bold text-brand-pink-deep">
-            ${product.price.toFixed(2)}
+            ৳{product.price.toFixed(2)}
           </span>
         </div>
         <Button

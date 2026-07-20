@@ -26,7 +26,7 @@ export function CartDrawer() {
             <ShoppingBag className="h-5 w-5 text-brand-pink-deep" /> Your Cart
           </SheetTitle>
           <SheetDescription>
-            {items.length === 0 ? "Your cart is empty." : `${items.length} item(s) ready to ship.`}
+            {items.length === 0 ? "Your cart is empty." : `৳{items.length} item(s) ready to ship.`}
           </SheetDescription>
         </SheetHeader>
 
@@ -61,7 +61,7 @@ export function CartDrawer() {
                       </button>
                     </div>
                     <span className="text-sm text-brand-pink-deep">
-                      ${item.price.toFixed(2)}
+                      ৳{item.price.toFixed(2)}
                     </span>
                     <div className="mt-auto flex items-center justify-between">
                       <div className="flex items-center gap-1 rounded-full border bg-white p-0.5">
@@ -84,7 +84,7 @@ export function CartDrawer() {
                         </button>
                       </div>
                       <span className="font-semibold">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ৳{(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -98,7 +98,7 @@ export function CartDrawer() {
           <div className="border-t bg-white p-5">
             <div className="mb-3 flex items-center justify-between">
               <span className="text-sm text-foreground/70">Subtotal</span>
-              <span className="font-display text-2xl font-bold">${subtotal.toFixed(2)}</span>
+              <span className="font-display text-2xl font-bold">৳{subtotal.toFixed(2)}</span>
             </div>
             <Button
               onClick={checkout}
