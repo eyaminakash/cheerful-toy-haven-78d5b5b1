@@ -130,7 +130,6 @@ function RootComponent() {
       <CartProvider>
         <SearchProvider>
           <Outlet />
-          <CartDrawer />
           <Toaster richColors position="top-right" />
         </SearchProvider>
       </CartProvider>
