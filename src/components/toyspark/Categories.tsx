@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { scrollToId } from "@/lib/scroll";
+import { scrollToSection } from "@/lib/scroll";
 import action from "@/assets/categories/action.jpg";
 import animals from "@/assets/categories/animals.jpg";
 import art from "@/assets/categories/art.jpg";
@@ -33,7 +33,7 @@ export function Categories() {
           {CATEGORIES.map((c, i) => (
             <motion.button
               key={c.name}
-              onClick={() => scrollToId("products")}
+              onClick={() => scrollToSection("products")}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
