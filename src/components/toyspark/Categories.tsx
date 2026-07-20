@@ -1,4 +1,5 @@
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import { scrollToSection } from "@/lib/scroll";
@@ -64,7 +65,7 @@ export function Categories() {
 
         <Carousel
           opts={{ loop: true, align: "start" }}
-          plugins={[autoplay.current]}
+          plugins={[autoplay.current, Fade()]}
           className="w-full"
         >
           <CarouselContent className="-ml-4">
